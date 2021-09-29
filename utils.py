@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from IPython.display import display
 
 from tensorflow import keras
@@ -7,6 +8,17 @@ from sklearn.model_selection import train_test_split
 
 from proteinbert import OutputType, OutputSpec, FinetuningModelGenerator, load_pretrained_model, finetune
 from proteinbert.conv_and_global_attention_model import get_model_with_hidden_layers_as_outputs
+
+
+def get_prediction(data, model, BATCH_SIZE=32, SEQ_LEN=512):
+    
+    pretrained_model_generator, input_encoder = load_pretrained_model()
+    X = input_encoder.encode_X(data, seq_len=SEQ_LEN)
+
+    prediciton = model.predict(X, batch_size = BATCH_SIZE)
+
+    return prediciton
+
 
 def read_fasta(fasta_fname):
     
@@ -35,18 +47,25 @@ def negtive_sampling(negtive, pos_len):
     return negtive_sentences, negitive_labels
 
 def save_fituned_model(model, path='./default'):
+    
+    import os
+        
     if not os.path.exists(path):
-        os.makedirs(directory)
+        os.makedirs(path)
     model.save_weights(path+'/checkpoint')
     print("Save model at",path)
 
 def load_fituned_model(model_path='./default', seq_len=512):
+    OUTPUT_TYPE = OutputType(False, 'binary')
+    UNIQUE_LABELS = [0, 1]
+    OUTPUT_SPEC = OutputSpec(OUTPUT_TYPE, UNIQUE_LABELS)
+    SEQ_LEN = 512
     
     pretrained_model_generator, input_encoder = load_pretrained_model()
     
     model_generator = FinetuningModelGenerator(pretrained_model_generator, OUTPUT_SPEC, pretraining_model_manipulation_function =             get_model_with_hidden_layers_as_outputs, dropout_rate = 0.5)
     
-    model = model_generator.create_model(seq_len)
+    model = model_generator.create_model(SEQ_LEN)
     model.load_weights(model_path)
     return model
     
@@ -59,9 +78,9 @@ def validation(model, input_encoder, output_spec, seqs, raw_Y, start_seq_len = 5
     y_trues = []
     y_preds = []
     
-    for len_matching_dataset, seq_len, batch_size in split_dataset_by_len(dataset, start_seq_len = start_seq_len, start_batch_size = start_batch_size,             increase_factor = increase_factor):
+    for len_matching_dataset, seq_len, batch_size in split_dataset_by_len(dataset, start_seq_len = start_seq_len, start_batch_size = start_batch_size,increase_factor = increase_factor):
 
-        X, y_true, sample_weights = encode_dataset(len_matching_dataset['seq'], len_matching_dataset['raw_y'], input_encoder, output_spec,                 seq_len = seq_len, needs_filtering = False)
+        X, y_true, sample_weights = encode_dataset(len_matching_dataset['seq'], len_matching_dataset['raw_y'], input_encoder, output_spec, seq_len = seq_len, needs_filtering = False)
         
         assert set(np.unique(sample_weights)) <= {0.0, 1.0}
         y_mask = (sample_weights == 1)
@@ -98,6 +117,7 @@ def model_fituning(model_name, train_set, test_set, save_model=False, path='./de
     OUTPUT_TYPE = OutputType(False, 'binary')
     UNIQUE_LABELS = [0, 1]
     OUTPUT_SPEC = OutputSpec(OUTPUT_TYPE, UNIQUE_LABELS)
+    SEQ_LEN = 512
 
     # Loading the dataset
     train_set, valid_set = train_test_split(train_set, stratify = train_set['label'], test_size = 0.1, random_state = 42)
@@ -115,10 +135,12 @@ def model_fituning(model_name, train_set, test_set, save_model=False, path='./de
         keras.callbacks.EarlyStopping(patience = 2, restore_best_weights = True),
     ]
     
-    finetune(model_generator, input_encoder, OUTPUT_SPEC, train_set['seq'], train_set['label'], valid_set['seq'], valid_set['label'], seq_len = 512, batch_size = 64, max_epochs_per_stage = 20, lr = 1e-05, begin_with_frozen_pretrained_layers = True, lr_with_frozen_pretrained_layers = 1e-02, n_final_epochs = 1, final_seq_len = 1024, final_lr = 1e-07, callbacks = training_callbacks)
-
+    finetune(model_generator, input_encoder, OUTPUT_SPEC, train_set['seq'], train_set['label'], valid_set['seq'], valid_set['label'], seq_len = SEQ_LEN, batch_size = 32, max_epochs_per_stage = 1, lr = 1e-05, begin_with_frozen_pretrained_layers = True, lr_with_frozen_pretrained_layers = 1e-02, n_final_epochs = 1, final_seq_len = 1024, final_lr = 1e-07, callbacks = training_callbacks)
+    
+    model = model_generator.create_model(seq_len = SEQ_LEN)
+        
     # Evaluating the performance on the test-set
-    results, confusion_matrix, model = validation(model_generator, input_encoder, OUTPUT_SPEC, test_set['seq'], test_set['label'],             start_seq_len = 512, start_batch_size = 32)
+    results, confusion_matrix, model = validation(model, input_encoder, OUTPUT_SPEC, test_set['seq'], test_set['label'], start_seq_len = SEQ_LEN, start_batch_size = 32)
     
     if save_model:
         save_fituned_model(model, path)

@@ -33,7 +33,9 @@ python3 prediction.py -i ./test/example.fasta -m ./default/checkpoint -o ./test/
 
 
 The default input of this demo is 10 human proteins (`test/example.fasta`) in FASTA format.
+
 The prediction result (`test/example_output.csv`) below shows prediction scores and whether the protein is a surfaceome in table.
+
 <img width="331" alt="截圖 2021-09-30 下午7 38 14" src="https://user-images.githubusercontent.com/56534481/135448372-bf8db363-2591-44f4-963d-07869504a4f9.png">
 
 

@@ -22,7 +22,9 @@ pip3 install -r requirements.txt
 For quick demo our model, run the command below
 
 -f : input amino acids data in FASTA format
+
 -m : SurfaceomeBert model using tensorflow framework
+
 -o : output prediction result in CSV
 
 ```

@@ -9,13 +9,18 @@ AI4Surfaceome (web-server) is freely accessible at TBA.
 ## Quick Start
 Here we give a quick demo and command usage of our SurfaceomeBert.
 
-### Environment Setup (Dependency Installation)
+### Environment Setup / Dependency Installation
 SurfaceomeBert requires Python 3.
 Install the Python packages required by SurfaceomeBert:
 
 ```
 pip3 install -r requirements.txt
 ```
+
+### Download Fine-tuned Model
+You can get fine-tuned model from https://reurl.cc/XlVxe7 and just put the directory under root.
+The path should be like `./default`.
+
 
 ### Predict Your Own Proteins
 

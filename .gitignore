@@ -1,4 +1,5 @@
 /.ipynb_checkpoints
 utils.pyc
 __pycache__/
-default/
+defaulti/
+.DS_Store

@@ -16,7 +16,7 @@ Install the Python packages required by SurfaceomeBert:
 pip3 install -r requirements.txt
 ```
 
-### Predict your proteins (Command Usage)
+### Predict Your Proteins
 
 For quick demo our model, run the command below
 
@@ -34,16 +34,16 @@ The prediction result (`test/example_output.csv`) below shows prediction scores 
 <img width="331" alt="截圖 2021-09-30 下午7 38 14" src="https://user-images.githubusercontent.com/56534481/135448372-bf8db363-2591-44f4-963d-07869504a4f9.png">
 
 
-### SurfaceomeBert deep neural network model architecture
+### SurfaceomeBert Deep Neural Network Model Architecture
 TBA
 
 ### Dataset
 All protein sequences are from UniPort(https://www.uniprot.org/)
 
-### Pre-trained model
+### Pre-trained Model
 Pre-trained model is from https://github.com/nadavbra/protein_bert
 
-### Predict your own proteins
+### Ipynb Tutorial
 If you like to use this model to predict your amino acid sequences, please refer to demo.ipynb for implementation details of the project.
 
 ### Reference

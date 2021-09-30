@@ -6,6 +6,7 @@ Surfaceome are considered as a signaling gateway to the cellular microenvironmen
 AI4Surfaceome (web-server) is freely accessible at TBA.
 
 
+## Quick Start
 Here we give a quick demo and command usage of our SurfaceomeBert.
 
 ### Environment Setup (Dependency Installation)
@@ -16,7 +17,7 @@ Install the Python packages required by SurfaceomeBert:
 pip3 install -r requirements.txt
 ```
 
-### Predict Your Proteins
+### Predict Your Own Proteins
 
 For quick demo our model, run the command below
 

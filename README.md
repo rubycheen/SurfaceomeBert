@@ -19,7 +19,7 @@ pip3 install -r requirements.txt
 
 ### Download Fine-tuned Model
 You can get fine-tuned model from https://reurl.cc/XlVxe7 and just put the directory under root.
-The path should be like `./default`.
+The path should be like `SurfaceomeBert/default`.
 
 
 ### Predict Your Own Proteins

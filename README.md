@@ -3,7 +3,7 @@
 Surfaceome are considered as a signaling gateway to the cellular microenvironment, playing an important role in biomedicine. However, surfaceome discovery through traditional wet-lab research is expensive and inefficient. Thus, we applied a deep-learning approach utilizing Bert achetiecture to develop the accurate surfaceome predictor and used it to define the human protein on Uniprot with manual annotated (Swiss-prot) of 20,386 proteins. The positive dataset is mainly from CSPA highly-confident surfaceome and the positive dataset using by “The in silico human surfaceome”. And we chose the Bert pre-trained on protein sequences and replace the classic second pre-trained task “Next Sentence Prediction” with “Go Annotation Prediction” from “ProteinBERT: A universal deep-learning model of protein sequence and function”. Then we fine-tuned model on our surfaceome dataset and build up a web-server to accelerate the process of surfaceome discovery. 
 
 ## Website
-AI4Surfaceome (web-server) is freely accessible at TBA.
+AI4Surfaceome (web-server) is freely accessible at https://axp.iis.sinica.edu.tw/AI4Surfaceome/?fbclid=IwAR25sWVl8IpaN7ZEYtAadnZa8Ou00HLFRwcQ8jFADHHXIQjVLbhIYo5toh8
 
 
 ## Quick Start

@@ -46,10 +46,6 @@ The prediction result (`test/example_output.csv`) below shows prediction scores 
 <img width="331" alt="截圖 2021-09-30 下午7 38 14" src="https://user-images.githubusercontent.com/56534481/135448372-bf8db363-2591-44f4-963d-07869504a4f9.png">
 
 
-### SurfaceomeBert Deep Neural Network Model Architecture
-![F1 medium](https://user-images.githubusercontent.com/56534481/135744160-c23474e9-a101-4e12-a985-d7b1895014ff.gif)
-
-
 ### Training Dataset
 All protein sequences are from UniPort(https://www.uniprot.org/)
 

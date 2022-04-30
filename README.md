@@ -55,5 +55,5 @@ Pre-trained model is from https://github.com/nadavbra/protein_bert
 ### Ipynb Tutorial
 If you like to continually fine-tuned this model by your amino acid sequences or use model in your code, please refer to `demo.ipynb` for implementation details of the project.
 
-### Reference
-Brandes, N., Ofer, D., Peleg, Y., Rappoport, N. & Linial, M. ProteinBERT: A universal deep-learning model of protein sequence and function. bioRxiv (2021). https://doi.org/10.1101/2021.05.24.445464
+### Citation
+Brandes, N., Ofer, D., Peleg, Y., Rappoport, N. & Linial, M. ProteinBERT: A universal deep-learning model of protein sequence and function. Bioinformatics (2022). https://doi.org/10.1093/bioinformatics/btac020

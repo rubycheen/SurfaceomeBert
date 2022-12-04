@@ -60,6 +60,7 @@ Brandes, N., Ofer, D., Peleg, Y., Rappoport, N. & Linial, M.
 ProteinBERT: A universal deep-learning model of protein sequence and function. 
 Bioinformatics (2022). https://doi.org/10.1093/bioinformatics/btac020
 
+```
 @article{10.1093/bioinformatics/btac020,
     author = {Brandes, Nadav and Ofer, Dan and Peleg, Yam and Rappoport, Nadav and Linial, Michal},
     title = "{ProteinBERT: a universal deep-learning model of protein sequence and function}",
@@ -75,3 +76,4 @@ Bioinformatics (2022). https://doi.org/10.1093/bioinformatics/btac020
     url = {https://doi.org/10.1093/bioinformatics/btac020},
     eprint = {https://academic.oup.com/bioinformatics/article-pdf/38/8/2102/45474534/btac020.pdf},
 }
+```
